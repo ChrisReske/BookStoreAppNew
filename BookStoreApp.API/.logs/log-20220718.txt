@@ -13,3 +13,8 @@
 2022-07-18 13:22:59.831 +02:00 [INF] Application started. Press Ctrl+C to shut down.
 2022-07-18 13:22:59.835 +02:00 [INF] Hosting environment: Development
 2022-07-18 13:22:59.836 +02:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
+2022-07-18 16:04:54.227 +02:00 [INF] Now listening on: https://localhost:7091
+2022-07-18 16:04:54.318 +02:00 [INF] Now listening on: http://localhost:5091
+2022-07-18 16:04:54.331 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-18 16:04:54.333 +02:00 [INF] Hosting environment: Development
+2022-07-18 16:04:54.335 +02:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
