@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookStoreApp.API.Data;
+using BookStoreApp.API.Models.Author;
 
 namespace BookStoreApp.API.Controllers
 {
@@ -14,21 +16,22 @@ namespace BookStoreApp.API.Controllers
     public class AuthorsController : ControllerBase
     {
         private readonly BookStoreDbContext _context;
+        private readonly IMapper _mapper;
 
-        public AuthorsController(BookStoreDbContext context)
+
+        public AuthorsController(
+            BookStoreDbContext context, 
+            IMapper mapper)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         // GET: api/Authors
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Author>>> GetAuthors()
         {
-          if (_context.Authors == null)
-          {
-              return NotFound();
-          }
-          return Ok(await _context.Authors.ToListAsync());
+            return Ok(await _context.Authors.ToListAsync());
         }
 
         // GET: api/Authors/5
@@ -83,16 +86,16 @@ namespace BookStoreApp.API.Controllers
         // POST: api/Authors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Author>> PostAuthor(Author author)
+        public async Task<ActionResult<AuthorCreateDto>> PostAuthor(AuthorCreateDto authorDto)
         {
-          if (_context.Authors == null)
-          {
-              return Problem("Entity set 'BookStoreDbContext.Authors'  is null.");
-          }
-          await _context.Authors.AddAsync(author);
-          await _context.SaveChangesAsync();
+            if (authorDto == null) throw new ArgumentNullException(nameof(authorDto));
+            var author = _mapper.Map<Author>(authorDto);
 
-          return CreatedAtAction(nameof(GetAuthor), new { id = author.Id }, author);
+            await _context.Authors.AddAsync(author); 
+            await _context.SaveChangesAsync();
+            
+            return CreatedAtAction(nameof(GetAuthor), 
+                new { id = author.Id }, author);
         }
 
         // DELETE: api/Authors/5
