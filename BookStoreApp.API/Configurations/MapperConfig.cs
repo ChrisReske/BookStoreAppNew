@@ -10,6 +10,7 @@ public class MapperConfig : Profile
     {
         CreateMap<AuthorCreateDto, Author>().ReverseMap();
         CreateMap<AuthorReadOnlyDto, Author>().ReverseMap();
+        CreateMap<AuthorUpdateDto, Author>().ReverseMap();
 
     }
 }
