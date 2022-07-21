@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,7 +32,10 @@ namespace BookStoreApp.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Author>>> GetAuthors()
         {
-            return Ok(await _context.Authors.ToListAsync());
+            var authors = await _context.Authors.ToListAsync();
+            var authorsDto = _mapper.Map<IEnumerable<AuthorReadOnlyDto>>(authors);
+
+            return Ok(authorsDto);
         }
 
         // GET: api/Authors/5
