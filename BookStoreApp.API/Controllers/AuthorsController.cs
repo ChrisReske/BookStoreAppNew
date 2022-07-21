@@ -56,13 +56,20 @@ namespace BookStoreApp.API.Controllers
         // PUT: api/Authors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAuthor(int id, Author author)
+        public async Task<IActionResult> PutAuthor(int id, AuthorUpdateDto authorDto)
         {
-            if (id != author.Id)
+            if (id != authorDto.Id)
             {
                 return BadRequest();
             }
 
+            var author = await _context.Authors.FindAsync(id);
+            if(author == null)
+            {
+                return NotFound(); 
+            }
+            
+            _mapper.Map(authorDto, author);
             _context.Entry(author).State = EntityState.Modified;
 
             try
