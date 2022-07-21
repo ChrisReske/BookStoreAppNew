@@ -39,3 +39,8 @@ BookStoreApp.API.Data.Author -> BookStoreApp.API.Models.Author.AuthorReadOnlyDto
 2022-07-21 11:23:32.392 +02:00 [INF] Application started. Press Ctrl+C to shut down.
 2022-07-21 11:23:32.394 +02:00 [INF] Hosting environment: Development
 2022-07-21 11:23:32.395 +02:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
+2022-07-21 11:28:34.709 +02:00 [INF] Now listening on: https://localhost:7091
+2022-07-21 11:28:34.800 +02:00 [INF] Now listening on: http://localhost:5091
+2022-07-21 11:28:34.810 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-21 11:28:34.812 +02:00 [INF] Hosting environment: Development
+2022-07-21 11:28:34.813 +02:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
