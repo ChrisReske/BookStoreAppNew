@@ -96,9 +96,7 @@ namespace BookStoreApp.API.Controllers
         [HttpPost]
         public async Task<ActionResult<AuthorCreateDto>> PostAuthor(AuthorCreateDto authorDto)
         {
-            if (authorDto == null) throw new ArgumentNullException(nameof(authorDto));
             var author = _mapper.Map<Author>(authorDto);
-
             await _context.Authors.AddAsync(author); 
             await _context.SaveChangesAsync();
             
