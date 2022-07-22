@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookStoreApp.API.Data;
 using BookStoreApp.API.Models.Author;
+using BookStoreApp.API.Static;
 
 namespace BookStoreApp.API.Controllers
 {
@@ -18,24 +19,33 @@ namespace BookStoreApp.API.Controllers
     {
         private readonly BookStoreDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ILogger<AuthorsController> _logger;
 
 
         public AuthorsController(
             BookStoreDbContext context, 
-            IMapper mapper)
+            IMapper mapper, ILogger<AuthorsController> logger)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         // GET: api/Authors
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Author>>> GetAuthors()
         {
-            var authors = await _context.Authors.ToListAsync();
-            var authorsDto = _mapper.Map<IEnumerable<AuthorReadOnlyDto>>(authors);
-
-            return Ok(authorsDto);
+            try
+            {
+                var authors = await _context.Authors.ToListAsync();
+                var authorsDto = _mapper.Map<IEnumerable<AuthorReadOnlyDto>>(authors);
+                return Ok(authorsDto);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"Error performing Get in {nameof(GetAuthors)}");
+                return StatusCode(500, Messages.Error500Message);
+            }
         }
 
         // GET: api/Authors/5
