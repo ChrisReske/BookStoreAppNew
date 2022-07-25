@@ -79,12 +79,14 @@ namespace BookStoreApp.API.Controllers
         {
             if (id != authorDto.Id)
             {
+                _logger.LogWarning($"Update Id invalid in {nameof(PutAuthor)} - Id: {id}");
                 return BadRequest();
             }
 
             var author = await _context.Authors.FindAsync(id);
             if(author == null)
             {
+                _logger.LogWarning($"{nameof(Author)} record not found in {nameof(PutAuthor)} - Id: {id}");
                 return NotFound(); 
             }
             
@@ -95,7 +97,7 @@ namespace BookStoreApp.API.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!await AuthorExistsAsync(id))
                 {
@@ -103,7 +105,8 @@ namespace BookStoreApp.API.Controllers
                 }
                 else
                 {
-                    throw;
+                    _logger.LogError(ex, $"Error performing GET in {nameof(PutAuthor)}");
+                    return StatusCode(500, Messages.Error500Message);
                 }
             }
 
