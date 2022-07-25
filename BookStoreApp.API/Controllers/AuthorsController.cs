@@ -52,15 +52,24 @@ namespace BookStoreApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<AuthorReadOnlyDto>> GetAuthor(int id)
         {
-          var author = await _context.Authors.FindAsync(id);
+            try
+            {
+                var author = await _context.Authors.FindAsync(id);
 
-          if (author == null)
-          {
-              return NotFound();
-          }
+                if (author == null)
+                {
+                    _logger.LogInformation($"Record not found: {nameof(GetAuthor)} - ID: {id}");
+                    return NotFound();
+                }
 
-          var authorDto = _mapper.Map<AuthorReadOnlyDto>(author);
-          return Ok(authorDto);
+                var authorDto = _mapper.Map<AuthorReadOnlyDto>(author);
+                return Ok(authorDto);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"Error performing GET in {nameof(GetAuthors)}");
+                return StatusCode(500, Messages.Error500Message);
+            }
         }
 
         // PUT: api/Authors/5
