@@ -118,12 +118,20 @@ namespace BookStoreApp.API.Controllers
         [HttpPost]
         public async Task<ActionResult<AuthorCreateDto>> PostAuthor(AuthorCreateDto authorDto)
         {
-            var author = _mapper.Map<Author>(authorDto);
-            await _context.Authors.AddAsync(author); 
-            await _context.SaveChangesAsync();
+            try
+            {
+                var author = _mapper.Map<Author>(authorDto);
+                await _context.Authors.AddAsync(author); 
+                await _context.SaveChangesAsync();
             
-            return CreatedAtAction(nameof(GetAuthor), 
-                new { id = author.Id }, author);
+                return CreatedAtAction(nameof(GetAuthor), 
+                    new { id = author.Id }, author);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"Error performing POST in {nameof(PostAuthor)}", authorDto);
+                return StatusCode(500, Messages.Error500Message);
+            }
         }
 
         // DELETE: api/Authors/5
