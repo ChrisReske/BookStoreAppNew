@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookStoreApp.API.Data;
+using AutoMapper;
+using BookStoreApp.API.Models.Book;
 
 namespace BookStoreApp.API.Controllers
 {
@@ -14,21 +16,24 @@ namespace BookStoreApp.API.Controllers
     public class BooksController : ControllerBase
     {
         private readonly BookStoreDbContext _context;
+        private readonly IMapper _mapper;
 
-        public BooksController(BookStoreDbContext context)
+        public BooksController(
+            BookStoreDbContext context,
+            IMapper mapper)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         // GET: api/Books
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+        public async Task<ActionResult<IEnumerable<BookReadOnlyDto>>> GetBooks()
         {
-          if (_context.Books == null)
-          {
-              return NotFound();
-          }
-            return await _context.Books.ToListAsync();
+            var books = await _context.Books.Include(
+                q => q.Author).ToListAsync();
+            var booksDto = _mapper.Map<IEnumerable<BookReadOnlyDto>>(books);
+            return Ok(booksDto);
         }
 
         // GET: api/Books/5
