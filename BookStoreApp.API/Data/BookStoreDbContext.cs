@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreApp.API.Data
 {
-    public partial class BookStoreDbContext : IdentityDbContext
+    public partial class BookStoreDbContext : IdentityDbContext<ApiUser>
     {
         public BookStoreDbContext()
         {
