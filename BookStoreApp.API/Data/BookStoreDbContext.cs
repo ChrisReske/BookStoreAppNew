@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BookStoreApp.API.Data
 {
@@ -59,49 +60,18 @@ namespace BookStoreApp.API.Data
                     .HasConstraintName("FK_Books_ToTable");
             });
 
-            var hasher = new PasswordHasher<ApiUser>();
-
             // Seed test users and roles
-            modelBuilder.Entity<IdentityRole>().HasData(
-                new IdentityRole
-                {
-                    Name = "User",
-                    NormalizedName = "USER",
-                    Id = "ffe01aa8-1231-4f49-bd86-2412a4a00933"
-                },
-                new IdentityRole
-                {
-                    Name = "Administrator",
-                    NormalizedName = "ADMINISTRATOR",
-                    Id = "56972b2b-656b-4d41-a21c-7cbd4a177b68"
-                }
-            );
+            CreateSeedIdentityRoles(modelBuilder);
 
-            modelBuilder.Entity<ApiUser>().HasData(
-            new ApiUser
-            {
-                Id = "56613f0e-5e91-4e9b-b685-932272d6e28a",
-                Email = "admin@bookstore.com",
-                NormalizedEmail = "ADMIN@BOOKSTORE.COM",
-                UserName = "admin@bookstore.com",
-                NormalizedUserName = "ADMIN@BOOKSTORE.COM",
-                FirstName = "System",
-                LastName = "Admin",
-                PasswordHash = hasher.HashPassword(null, "P@ssword1")
-            },
-            new ApiUser
-            {
-                Id = "54e1c831-5e3a-4d7a-9dc9-b1773c4739e3",
-                Email = "user@bookstore.com",
-                NormalizedEmail = "USER@BOOKSTORE.COM",
-                UserName = "user@bookstore.com",
-                NormalizedUserName = "USER@BOOKSTORE.COM",
-                FirstName = "System",
-                LastName = "User",
-                PasswordHash = hasher.HashPassword(null, "P@ssword1")
-            }
-            );
+            CreateSeedApiUsers(modelBuilder);
 
+            CreateSeedIdentityUserRoles(modelBuilder);
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+
+        private static void CreateSeedIdentityUserRoles(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(
                 // User
                 new IdentityUserRole<string>
@@ -116,11 +86,59 @@ namespace BookStoreApp.API.Data
                     RoleId = "56972b2b-656b-4d41-a21c-7cbd4a177b68",
                     UserId = "56613f0e-5e91-4e9b-b685-932272d6e28a"
                 }
-                );
+            );
+        }
 
-            OnModelCreatingPartial(modelBuilder);
+        #region Private static methods
+        private static void CreateSeedApiUsers(ModelBuilder modelBuilder)
+        {
+            var hasher = new PasswordHasher<ApiUser>();
+
+            modelBuilder.Entity<ApiUser>().HasData(
+                new ApiUser
+                {
+                    Id = "56613f0e-5e91-4e9b-b685-932272d6e28a",
+                    Email = "admin@bookstore.com",
+                    NormalizedEmail = "ADMIN@BOOKSTORE.COM",
+                    UserName = "admin@bookstore.com",
+                    NormalizedUserName = "ADMIN@BOOKSTORE.COM",
+                    FirstName = "System",
+                    LastName = "Admin",
+                    PasswordHash = hasher.HashPassword(null, "P@ssword1")
+                },
+                new ApiUser
+                {
+                    Id = "54e1c831-5e3a-4d7a-9dc9-b1773c4739e3",
+                    Email = "user@bookstore.com",
+                    NormalizedEmail = "USER@BOOKSTORE.COM",
+                    UserName = "user@bookstore.com",
+                    NormalizedUserName = "USER@BOOKSTORE.COM",
+                    FirstName = "System",
+                    LastName = "User",
+                    PasswordHash = hasher.HashPassword(null, "P@ssword1")
+                }
+            );
+        }
+
+        private static void CreateSeedIdentityRoles(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Name = "User",
+                    NormalizedName = "USER",
+                    Id = "ffe01aa8-1231-4f49-bd86-2412a4a00933"
+                },
+                new IdentityRole
+                {
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR",
+                    Id = "56972b2b-656b-4d41-a21c-7cbd4a177b68"
+                }
+            );
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
+    #endregion
 }
