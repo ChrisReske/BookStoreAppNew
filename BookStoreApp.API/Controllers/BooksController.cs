@@ -40,32 +40,40 @@ namespace BookStoreApp.API.Controllers
 
         // GET: api/Books/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Book>> GetBook(int id)
+        public async Task<ActionResult<BookDetailsDto>> GetBook(int id)
         {
-          if (_context.Books == null)
-          {
-              return NotFound();
-          }
-          var book = await _context.Books.FindAsync(id);
+            var bookDetailsDto = await _context.Books
+                .Include(q => q.Author)
+                .ProjectTo<BookDetailsDto>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
 
-          if (book == null)
-          {
+            if (bookDetailsDto == null)
+            {
               return NotFound();
-          }
+            }
 
-          return book;
+            return bookDetailsDto;
         }
 
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBook(int id, Book book)
+        public async Task<IActionResult> PutBook(int id, BookUpdateDto bookUpdateDto)
         {
-            if (id != book.Id)
+            if (id != bookUpdateDto.Id)
             {
                 return BadRequest();
             }
 
+            var book = await _context.Books.FindAsync(id);
+
+            if(book == null)
+            {
+                return NotFound();
+            }
+
+
+            _mapper.Map(bookUpdateDto, book);
             _context.Entry(book).State = EntityState.Modified;
 
             try
@@ -90,16 +98,13 @@ namespace BookStoreApp.API.Controllers
         // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Book>> PostBook(Book book)
+        public async Task<ActionResult<Book>> PostBook(BookCreateDto bookCreateDto)
         {
-          if (_context.Books == null)
-          {
-              return Problem("Entity set 'BookStoreDbContext.Books'  is null.");
-          }
+            var book = _mapper.Map<Book>(bookCreateDto);
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBook", new { id = book.Id }, book);
+            return CreatedAtAction(nameof(GetBook), new {id = book.Id}, book);
         }
 
         // DELETE: api/Books/5
