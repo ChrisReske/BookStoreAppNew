@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BookStoreApp.API.Data
+﻿namespace BookStoreApp.API.Data
 {
     public partial class Author
     {
