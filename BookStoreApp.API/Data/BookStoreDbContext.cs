@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreApp.API.Data
 {
-    public partial class BookStoreDbContext : DbContext
+    public partial class BookStoreDbContext : IdentityDbContext
     {
         public BookStoreDbContext()
         {
@@ -18,6 +19,13 @@ namespace BookStoreApp.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            if (modelBuilder is null)
+            {
+                throw new ArgumentNullException(nameof(modelBuilder));
+            }
+
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Author>(entity =>
             {
                 entity.Property(e => e.Bio).HasMaxLength(250);
