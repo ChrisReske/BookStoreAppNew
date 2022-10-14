@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookStoreApp.API.Data;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using BookStoreApp.API.Models.Book;
 
 namespace BookStoreApp.API.Controllers
@@ -30,9 +31,10 @@ namespace BookStoreApp.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BookReadOnlyDto>>> GetBooks()
         {
-            var books = await _context.Books.Include(
-                q => q.Author).ToListAsync();
-            var booksDto = _mapper.Map<IEnumerable<BookReadOnlyDto>>(books);
+            var booksDto = await _context.Books
+                .Include(q => q.Author)
+                .ProjectTo<BookReadOnlyDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
             return Ok(booksDto);
         }
 
@@ -44,14 +46,14 @@ namespace BookStoreApp.API.Controllers
           {
               return NotFound();
           }
-            var book = await _context.Books.FindAsync(id);
+          var book = await _context.Books.FindAsync(id);
 
-            if (book == null)
-            {
-                return NotFound();
-            }
+          if (book == null)
+          {
+              return NotFound();
+          }
 
-            return book;
+          return book;
         }
 
         // PUT: api/Books/5
