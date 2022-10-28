@@ -1,0 +1,51 @@
+2022-10-28 12:37:05.211 +02:00 [INF] Now listening on: https://localhost:7091
+2022-10-28 12:37:05.390 +02:00 [INF] Now listening on: http://localhost:5091
+2022-10-28 12:37:05.489 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-28 12:37:05.862 +02:00 [INF] Hosting environment: Development
+2022-10-28 12:37:05.994 +02:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
+2022-10-28 12:37:44.980 +02:00 [INF] Login attempt for user@bookstore.com
+2022-10-28 12:37:50.549 +02:00 [ERR] Something went wrong int the Register
+System.ArgumentNullException: String reference not set to an instance of a String. (Parameter 's')
+   at System.Text.Encoding.GetBytes(String s)
+   at System.Text.UTF8Encoding.UTF8EncodingSealed.GetBytes(String s)
+   at BookStoreApp.API.Controllers.AuthController.GenerateToken(ApiUser user) in C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\Controllers\AuthController.cs:line 113
+   at BookStoreApp.API.Controllers.AuthController.Login(LoginUserDto loginUserDto) in C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\Controllers\AuthController.cs:line 93
+2022-10-28 12:38:47.651 +02:00 [INF] Registration attempt for user@bookstore.com
+2022-10-28 12:38:47.937 +02:00 [WRN] User validation failed: DuplicateUserName.
+2022-10-28 12:39:04.621 +02:00 [INF] Login attempt for user@bookstore.com
+2022-10-28 12:39:04.793 +02:00 [ERR] Something went wrong int the Register
+System.ArgumentNullException: String reference not set to an instance of a String. (Parameter 's')
+   at System.Text.Encoding.GetBytes(String s)
+   at System.Text.UTF8Encoding.UTF8EncodingSealed.GetBytes(String s)
+   at BookStoreApp.API.Controllers.AuthController.GenerateToken(ApiUser user) in C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\Controllers\AuthController.cs:line 113
+   at BookStoreApp.API.Controllers.AuthController.Login(LoginUserDto loginUserDto) in C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\Controllers\AuthController.cs:line 93
+2022-10-28 12:39:51.327 +02:00 [INF] Now listening on: https://localhost:7091
+2022-10-28 12:39:51.420 +02:00 [INF] Now listening on: http://localhost:5091
+2022-10-28 12:39:51.427 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-28 12:39:51.429 +02:00 [INF] Hosting environment: Development
+2022-10-28 12:39:51.430 +02:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
+2022-10-28 12:40:26.247 +02:00 [INF] Login attempt for user@bookstore.com
+2022-10-28 12:40:30.538 +02:00 [ERR] Something went wrong int the Register
+System.ArgumentNullException: String reference not set to an instance of a String. (Parameter 's')
+   at System.Text.Encoding.GetBytes(String s)
+   at System.Text.UTF8Encoding.UTF8EncodingSealed.GetBytes(String s)
+   at BookStoreApp.API.Controllers.AuthController.GenerateToken(ApiUser user) in C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\Controllers\AuthController.cs:line 113
+   at BookStoreApp.API.Controllers.AuthController.Login(LoginUserDto loginUserDto) in C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\Controllers\AuthController.cs:line 93
+2022-10-28 12:42:14.215 +02:00 [INF] Now listening on: https://localhost:7091
+2022-10-28 12:42:14.277 +02:00 [INF] Now listening on: http://localhost:5091
+2022-10-28 12:42:14.286 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-28 12:42:14.288 +02:00 [INF] Hosting environment: Development
+2022-10-28 12:42:14.289 +02:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
+2022-10-28 12:42:48.129 +02:00 [INF] Login attempt for user@bookstore.com
+2022-10-28 12:42:52.570 +02:00 [ERR] Something went wrong int the Register
+System.ArgumentNullException: String reference not set to an instance of a String. (Parameter 's')
+   at System.Text.Encoding.GetBytes(String s)
+   at System.Text.UTF8Encoding.UTF8EncodingSealed.GetBytes(String s)
+   at BookStoreApp.API.Controllers.AuthController.GenerateToken(ApiUser user) in C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\Controllers\AuthController.cs:line 113
+   at BookStoreApp.API.Controllers.AuthController.Login(LoginUserDto loginUserDto) in C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\Controllers\AuthController.cs:line 93
+2022-10-28 12:56:17.259 +02:00 [INF] Now listening on: https://localhost:7091
+2022-10-28 12:56:17.338 +02:00 [INF] Now listening on: http://localhost:5091
+2022-10-28 12:56:17.349 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-28 12:56:17.351 +02:00 [INF] Hosting environment: Development
+2022-10-28 12:56:17.352 +02:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
+2022-10-28 12:56:50.403 +02:00 [INF] Login attempt for user@bookstore.com
