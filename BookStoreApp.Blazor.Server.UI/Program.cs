@@ -1,4 +1,3 @@
-using BookStoreApp.Blazor.Server.UI.Data;
 using BookStoreApp.Blazor.Server.UI.Services.Base;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -9,11 +8,9 @@ const string httpsLocalhost = "https://localhost:7091";
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddServerSideBlazor();   
 builder.Services.AddHttpClient<IClient, Client>(cl => 
 {
-    
     cl.BaseAddress = new Uri(httpsLocalhost);
 });
 
