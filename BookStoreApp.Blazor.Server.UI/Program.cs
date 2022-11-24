@@ -1,3 +1,5 @@
+using Blazored.LocalStorage;
+using BookStoreApp.Blazor.Server.UI.Services.Authentication;
 using BookStoreApp.Blazor.Server.UI.Services.Base;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -8,12 +10,14 @@ const string httpsLocalhost = "https://localhost:7091";
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();   
+builder.Services.AddServerSideBlazor();
+builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddHttpClient<IClient, Client>(cl => 
 {
     cl.BaseAddress = new Uri(httpsLocalhost);
 });
 
+builder.Services.AddScoped<IAuthenticationService>();
 
 var app = builder.Build();
 
