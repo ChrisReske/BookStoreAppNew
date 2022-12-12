@@ -6,12 +6,12 @@ using System.Security.Claims;
 
 namespace BookStoreApp.Blazor.Server.UI.Providers
 {
-    public class ApiAuthenticationProvider : AuthenticationStateProvider
+    public class ApiAuthenticationStateProvider : AuthenticationStateProvider
     {
         private readonly ILocalStorageService _localStorage;
         private readonly JwtSecurityTokenHandler _jwtSecurityTokenHandler;
 
-        public ApiAuthenticationProvider(ILocalStorageService localStorage)
+        public ApiAuthenticationStateProvider(ILocalStorageService localStorage)
         {
             _localStorage = localStorage 
                             ?? throw new ArgumentNullException(nameof(localStorage));
@@ -37,7 +37,7 @@ namespace BookStoreApp.Blazor.Server.UI.Providers
                 return new AuthenticationState(user);
             }
 
-            var claims = tokenContent.Claims;
+            var claims =  tokenContent.Claims;
 
             user = new ClaimsPrincipal(new ClaimsIdentity(claims, AuthenticationStrings.AuthenticationType));
 

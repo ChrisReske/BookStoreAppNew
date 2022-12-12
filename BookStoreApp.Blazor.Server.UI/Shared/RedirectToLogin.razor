@@ -1,0 +1,9 @@
+﻿@inject NavigationManager Navigation
+
+@code {
+    protected override void OnInitialized()
+    {
+        const string usersLoginUri = "users/login";
+        Navigation.NavigateTo(usersLoginUri);
+    }
+}

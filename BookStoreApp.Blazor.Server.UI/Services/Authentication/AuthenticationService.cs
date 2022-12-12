@@ -1,6 +1,7 @@
 ﻿using Blazored.LocalStorage;
 using BookStoreApp.Blazor.Server.UI.Providers;
 using BookStoreApp.Blazor.Server.UI.Services.Base;
+using BookStoreApp.Blazor.Server.UI.Static;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace BookStoreApp.Blazor.Server.UI.Services.Authentication;
@@ -29,10 +30,10 @@ public class AuthenticationService : IAuthenticationService
         var response = await _httpClient.LoginAsync(loginModel);
 
         // STORE TOKEN IN LOCAL STORAGE
-        await _localStorage.SetItemAsync("accessToken", response.Token);
+        await _localStorage.SetItemAsync(AuthenticationStrings.AccessToken, response.Token);
 
         // CHANGE AUTH STATE
-        await ((ApiAuthenticationProvider)_authenticationStateProvider).LoggedIn();  
+        await ((ApiAuthenticationStateProvider)_authenticationStateProvider).LoggedIn();  
 
         return true;
     }
