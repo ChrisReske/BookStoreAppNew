@@ -5,7 +5,6 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using BookStoreApp.API.Models.Book;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
 using BookStoreApp.API.Static;
 
 namespace BookStoreApp.API.Controllers

@@ -1,0 +1,25 @@
+2022-12-12 13:29:05.876 +01:00 [INF] Now listening on: https://localhost:7091
+2022-12-12 13:29:06.084 +01:00 [INF] Now listening on: http://localhost:5091
+2022-12-12 13:29:06.112 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-12 13:29:06.122 +01:00 [INF] Hosting environment: Development
+2022-12-12 13:29:06.136 +01:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
+2022-12-12 13:34:01.144 +01:00 [INF] Now listening on: https://localhost:7091
+2022-12-12 13:34:01.243 +01:00 [INF] Now listening on: http://localhost:5091
+2022-12-12 13:34:01.258 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-12 13:34:01.261 +01:00 [INF] Hosting environment: Development
+2022-12-12 13:34:01.263 +01:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
+2022-12-12 13:34:56.315 +01:00 [INF] Now listening on: https://localhost:7091
+2022-12-12 13:34:56.382 +01:00 [INF] Now listening on: http://localhost:5091
+2022-12-12 13:34:56.390 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-12 13:34:56.395 +01:00 [INF] Hosting environment: Development
+2022-12-12 13:34:56.396 +01:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
+2022-12-12 13:39:14.974 +01:00 [INF] Now listening on: https://localhost:7091
+2022-12-12 13:39:15.041 +01:00 [INF] Now listening on: http://localhost:5091
+2022-12-12 13:39:15.050 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-12 13:39:15.051 +01:00 [INF] Hosting environment: Development
+2022-12-12 13:39:15.053 +01:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
+2022-12-12 13:41:32.820 +01:00 [INF] Now listening on: https://localhost:7091
+2022-12-12 13:41:32.924 +01:00 [INF] Now listening on: http://localhost:5091
+2022-12-12 13:41:32.934 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-12 13:41:32.940 +01:00 [INF] Hosting environment: Development
+2022-12-12 13:41:32.941 +01:00 [INF] Content root path: C:\Users\cr\projects_local\BookStoreAppNew\BookStoreApp.API\
