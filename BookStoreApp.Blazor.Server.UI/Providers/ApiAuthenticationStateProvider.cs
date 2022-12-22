@@ -37,7 +37,7 @@ namespace BookStoreApp.Blazor.Server.UI.Providers
                 return new AuthenticationState(user);
             }
 
-            var claims =  tokenContent.Claims;
+            var claims = await  GetClaimsAsync();
 
             user = new ClaimsPrincipal(new ClaimsIdentity(claims, AuthenticationStrings.AuthenticationType));
 
@@ -46,9 +46,7 @@ namespace BookStoreApp.Blazor.Server.UI.Providers
 
         public async Task LoggedIn()
         {
-            var savedToken = await _localStorage.GetItemAsync<string>(AuthenticationStrings.AccessToken);
-            var tokenContent = _jwtSecurityTokenHandler.ReadJwtToken(savedToken);
-            var claims = tokenContent.Claims;
+            var claims = await GetClaimsAsync();
             var user = new ClaimsPrincipal(new ClaimsIdentity(claims, AuthenticationStrings.AuthenticationType));
             var authState = Task.FromResult(new AuthenticationState(user));
             NotifyAuthenticationStateChanged(authState);
@@ -60,6 +58,16 @@ namespace BookStoreApp.Blazor.Server.UI.Providers
             var nobody = new ClaimsPrincipal(new ClaimsIdentity());
             var authState = Task.FromResult(new AuthenticationState(nobody));
             NotifyAuthenticationStateChanged(authState);
+        }
+
+        private async Task<List<Claim>> GetClaimsAsync()
+        {
+            var savedToken = await _localStorage
+                .GetItemAsync<string>(AuthenticationStrings.AccessToken);
+            var tokenContent = _jwtSecurityTokenHandler.ReadJwtToken(savedToken);
+            var claims = tokenContent.Claims.ToList();
+            claims.Add(new Claim(ClaimTypes.Name, tokenContent.Subject));
+            return claims;
         }
     }
 }
