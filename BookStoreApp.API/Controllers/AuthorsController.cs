@@ -29,7 +29,7 @@ namespace BookStoreApp.API.Controllers
 
         // GET: api/Authors
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Author>>> GetAuthors()
+        public async Task<ActionResult<IEnumerable<AuthorReadOnlyDto>>> GetAuthors()
         {
             try
             {
