@@ -1,4 +1,6 @@
 ﻿@page "/authors/update/{id:int}"
+@using BookStoreApp.Blazor.Server.UI.Services
+@using BookStoreApp.Blazor.Server.UI.Static
 @inject IAuthorService authorService
 @inject NavigationManager navManager
 @attribute [Authorize(Roles = Roles.Administrator)]
