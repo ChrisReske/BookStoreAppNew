@@ -13,7 +13,6 @@ public class MapperConfig : Profile
         // Author Mappings
         CreateMap<AuthorCreateDto, Author>().ReverseMap();
         CreateMap<AuthorReadOnlyDto, Author>().ReverseMap();
-            CreateMap<AuthorDetailsDto, Author>().ReverseMap();
         CreateMap<AuthorUpdateDto, Author>().ReverseMap();
 
         // Book Mappings
