@@ -1,7 +1,6 @@
 using Blazored.LocalStorage;
 using BookStoreApp.Blazor.Server.UI.Configurations;
 using BookStoreApp.Blazor.Server.UI.Providers;
-using BookStoreApp.Blazor.Server.UI.Services;
 using BookStoreApp.Blazor.Server.UI.Services.Authentication;
 using BookStoreApp.Blazor.Server.UI.Services.Author;
 using BookStoreApp.Blazor.Server.UI.Services.Base;
@@ -22,6 +21,7 @@ builder.Services.AddHttpClient<IClient, Client>(cl =>
 
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 builder.Services.AddScoped<ApiAuthenticationStateProvider>();
 builder.Services.AddScoped<AuthenticationStateProvider>(p => 
