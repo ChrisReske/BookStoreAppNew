@@ -1,6 +1,6 @@
 ﻿using BookStoreApp.Blazor.Server.UI.Services.Base;
 
-namespace BookStoreApp.Blazor.Server.UI.Services.Author;
+namespace BookStoreApp.Blazor.Server.UI.Services.Book;
 
 public interface IBookService
 {
